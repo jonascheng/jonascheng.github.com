@@ -1,18 +1,32 @@
 ---
 layout: post
-title: "Post This is first taste 2"
-date: 2016-05-18 17:55:46
+title: "Welcome to Jekyll 2"
+date: 2016-05-18 20:34:26
 image: '/assets/img/'
-description: 'How to use this template'
-main-class: 'misc'
-color: '#7AAB13'
+description: 'Put your description here.'
+main-class: 'jekyll'
+color: '#B31917'
 tags:
-- misc
 - jekyll
 categories:
-twitter_text: 'How to use this template'
-introduction: 'How to use this template'
+twitter_text: 'Put your twitter description here.'
+introduction: 'Put your description here.'
 ---
 
-# Test again
+You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
+To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
 
+Jekyll also offers powerful support for code snippets:
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
+
+[jekyll-gh]: https://github.com/mojombo/jekyll
+[jekyll]:    http://jekyllrb.com
