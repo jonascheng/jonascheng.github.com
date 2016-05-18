@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "This is first taste"
-date: 2016-05-18 20:35:48
+date: 2016-05-17 20:35:48
 image: '/assets/img/'
 description: 'Test description'
 main-class: 'misc'
