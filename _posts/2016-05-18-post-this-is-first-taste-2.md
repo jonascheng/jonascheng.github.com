@@ -8,7 +8,7 @@ main-class: 'jekyll'
 color: '#B31917'
 tags:
 - jekyll
-categories:
+categories: js
 twitter_text: 'Put your twitter description here.'
 introduction: 'Put your description here.'
 ---
