@@ -112,7 +112,9 @@ initpost_content() {
 echo "---"
 echo "layout: post"
 echo "title: \"${POST_TITLE}\""
-echo "date: ${CURRENT_DATE} ${TIME}"
+# According to https://jekyllrb.com/docs/frontmatter/
+# A date here overrides the date from the name of the post. 
+#echo "date: ${CURRENT_DATE} ${TIME}"
 echo "image: '/assets/img/'"
 echo "description:"
 echo "main-class:"
