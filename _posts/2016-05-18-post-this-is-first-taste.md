@@ -4,7 +4,7 @@ title: "Post This is first taste"
 date: 2016-05-18 17:37:00
 image: '/assets/img/'
 description: test description
-main-class: 'jekyll'
+main-class: 'aws'
 color: '#B31917'
 tags:
 - css

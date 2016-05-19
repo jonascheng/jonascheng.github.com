@@ -3,7 +3,7 @@ layout: post
 title: "this is first taste from initpost.sh"
 image: '/assets/img/'
 description:
-main-class: 'jekyll'
+main-class: 'aws'
 color: '#B31917'
 tags:
 categories:
