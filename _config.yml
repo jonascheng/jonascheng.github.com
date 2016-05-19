@@ -2,6 +2,7 @@
 description: A blog about Jonas Cheng
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jonascheng.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+timezone: Asia/Taipei
 
 # User settings
 username: Jonas Cheng
@@ -31,8 +32,8 @@ compress_html:
 links:
   - title: Home
     url: /
-#  - title: Series
-#    url: /series
+  - title: Series
+    url: /series
   - title: Tags
     url: /tags
   - title: About Me
