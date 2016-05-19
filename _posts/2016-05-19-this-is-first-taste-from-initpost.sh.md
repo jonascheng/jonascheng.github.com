@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "this is first taste from initpost.sh"
+date: 2016-05-19 21:19:38 +0800
 image: '/assets/img/'
 description:
 main-class: 'jekyll'
