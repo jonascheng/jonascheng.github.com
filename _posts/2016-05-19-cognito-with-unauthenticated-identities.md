@@ -12,15 +12,24 @@ tags:
 - "cognito"
 categories: aws
 twitter_text: "Cognito with Unauthenticated Identities"
-introduction: "Cognito with Unauthenticated Identities"
+introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway"
 ---
 
 # Pain Point
 
 I intent to create a REST API to handle request from unauthenticated mobile app(s), but the API should not be invoked by other unrecognized end points.
 
-For access control, I could not rely on providing client applications with static API key strings; these can be extracted from clients and used elsewhere.The Amazon API Gateway allows to generate client SDKs to integrate with your APIs. That SDK also manages the signing of requests when APIs require authentication.
-Each resource/method combination that you create as part of your API is granted its own specific Amazon Resource Name (ARN) that can be referenced in AWS Identity and Access Management (IAM) policies.API access is enforced by the IAM policies that you create outside the context of your application code. This means that you do not have to write any code to be aware of or enforce those access levels.Authorizing clients using [AWS Signature version 4 (SigV4)](http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) authorization and IAM policies for API access allows those same credentials to restrict or permit access to other AWS services and resources as needed.However there is no comprehensive sample code to walk through the idea as I document the post, I hope this could be of some help to whom would like to have similar intention as I do.
+For access control, I could not rely on providing client applications with static API key strings; these can be extracted from clients and used elsewhere.
+
+The Amazon API Gateway allows to generate client SDKs to integrate with your APIs. That SDK also manages the signing of requests when APIs require authentication.
+
+Each resource/method combination that you create as part of your API is granted its own specific Amazon Resource Name (ARN) that can be referenced in AWS Identity and Access Management (IAM) policies.
+
+API access is enforced by the IAM policies that you create outside the context of your application code. This means that you do not have to write any code to be aware of or enforce those access levels.
+
+Authorizing clients using [AWS Signature version 4 (SigV4)](http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) authorization and IAM policies for API access allows those same credentials to restrict or permit access to other AWS services and resources as needed.
+
+However there is no comprehensive sample code to walk through the idea as I document the post, I hope this could be of some help to whom would like to have similar intention as I do.
 
 # Overview
 
