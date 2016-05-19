@@ -3,7 +3,7 @@ layout: post
 title: "This is my first taste"
 date: 2016-05-18 20:34:26
 description: "this is test description"
-main-class: 'svg'
+main-class: 'mac'
 color: '#7D669E'
 tags:
 - svg
