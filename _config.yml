@@ -11,7 +11,7 @@ email: jonas.cheng@gmail.com
 twitter_username: 
 github_username:  jonascheng
 gplus_username:  
-disqus_username: 
+disqus_username: jonascheng
 
 # Build settings
 markdown: kramdown
@@ -31,8 +31,8 @@ compress_html:
 links:
   - title: Home
     url: /
-  - title: Series
-    url: /series
+#  - title: Series
+#    url: /series
   - title: Tags
     url: /tags
   - title: About Me
