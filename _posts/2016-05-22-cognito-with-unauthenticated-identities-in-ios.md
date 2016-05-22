@@ -12,6 +12,7 @@ tags:
 categories: aws
 twitter_text: "Cognito with Unauthenticated Identities in iOS"
 introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway in iOS"
+published: false
 ---
 
 # Preface 
@@ -26,6 +27,7 @@ In this sample code, I'd like to invoke **MOCK** API Gateway with Cognito SDK in
 
 * Generate an SDK for an API with the API Gateway Console
 * Integrate an API Gateway-Generated iOS SDK into Your iOS Project
+*Use the SDK in your project
 
 # Steps by Steps
 
@@ -69,6 +71,53 @@ You should use one of these two ways to import the AWS Mobile SDK but not both. 
 * With your project open in Xcode, <kbd>Control</kbd>+click **Frameworks** and then click **Add files to "\<project name\>"...**.
 * In Finder, navigate to the `AWSCore.framework` and `AWSAPIGateway.framework` files, select them, and click **Add**.
 * Open a target for your project, select **Build Phases**, expand **Link Binary With Libraries**, click the **+** button, and add `libsqlite3.dylib`, `libz.dylib`, and `SystemConfiguration.framework`.
+
+## Use the SDK in your project
+
+First import the generated header file
+
+```
+#import "CLIMOCKClient.h"
+```
+
+To use AWS IAM to authorize API calls you should set an
+
+Then grab the `defaultClient` from your code
+
+```
+CLIMOCKClient *client = [CLIMOCKClient defaultClient];
+```
+
+You can now call your method using the client SDK
+
+```
+[[client demoGet] continueWithBlock:^id(AWSTask *task) {
+    if (task.error) {
+        NSLog(@"Error: %@", task.error);
+        return nil;
+    }
+    if (task.result) {
+       CLIEmpty * output = task.result;
+       //Do something with output
+    }
+    return nil;
+}];
+```
+
+To use AWS IAM to authorize API calls you can set an `AWSCredentialsProvider` object as the default provider for the SDK.
+
+```
+AWSStaticCredentialsProvider *creds = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"" secretKey:@""];
+    
+AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:creds];
+    
+AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
+
+// you can also use Amazon Cognito to retrieve temporary credentials
+AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1
+        identityPoolId:CognitoPoolID];
+```
+
 
 ### Invoke MOCK API Gateway with Cognito SDK in iOS
 
