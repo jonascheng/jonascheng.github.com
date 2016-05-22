@@ -1,18 +1,17 @@
 ---
 layout: post
-title: "Cognito with Unauthenticated Identities"
+title: "Cognito with Unauthenticated Identities in Javascript"
 image: '/assets/img/'
-description: "In this post, I will demo you how to use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway"
+description: "In this post, I will demo you how to use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway in Javascript"
 main-class: aws
 tags:
 - "identify pool"
 - "api gateway"
-- "lambda"
-- "serverless"
 - "cognito"
+- "javascript"
 categories: aws
-twitter_text: "Cognito with Unauthenticated Identities"
-introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway"
+twitter_text: "Cognito with Unauthenticated Identities in Javascript"
+introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway in Javascript"
 ---
 
 # Pain Point
@@ -205,6 +204,9 @@ function foo() {
 
 foo();
 ```
+
+> You ONLY need to invoke `AWS.CognitoIdentity.getId()` first time or as you receive `ResourceNotFoundException: Identity 'identity-id' not found.`
+> 
 
 * Open index.html in browser, and you should be able to invoke the API successfully and read a prompt message `Hello foo!`
 
