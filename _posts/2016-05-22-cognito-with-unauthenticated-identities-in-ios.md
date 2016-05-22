@@ -29,7 +29,7 @@ In this sample code, I'd like to invoke **MOCK** API Gateway with Cognito SDK in
 
 # Steps by Steps
 
-### Generate an SDK for an API with the API Gateway Console
+## Generate an SDK for an API with the API Gateway Console
 
 * Sign in to the [API Gateway console](https://console.aws.amazon.com/apigateway)
 * Under `APIs\MOCK\Stages`, click on `dev`
@@ -37,7 +37,7 @@ In this sample code, I'd like to invoke **MOCK** API Gateway with Cognito SDK in
 * In the Prefix box, type the unique prefix `CLI` for the generated classes.
 * Choose `Generate SDK`, and then follow the on-screen directions to download the API Gateway-generated SDK.
 
-### Integrate an API Gateway-Generated iOS SDK into Your iOS Project
+## Integrate an API Gateway-Generated iOS SDK into Your iOS Project
 
 The generated SDK depends on the AWS Mobile SDK for iOS. There are two ways to import it into your project:
 
@@ -46,7 +46,7 @@ The generated SDK depends on the AWS Mobile SDK for iOS. There are two ways to i
 
 You should use one of these two ways to import the AWS Mobile SDK but not both. Importing both ways loads two copies of the SDK into the project and causes compiler errors.
 
-#### With CocoaPods
+### With CocoaPods
 
 * The AWS Mobile SDK for iOS is available through [CocoaPods](https://cocoapods.org/). If you have not installed CocoaPods, install it by running the command:
 
@@ -63,7 +63,7 @@ You should use one of these two ways to import the AWS Mobile SDK but not both. 
 * Open up `*.xcworkspace` with Xcode.
 * Add all files (`*.h` and `*.m` files) under the `generated-src` directory to your Xcode project.
 
-#### With Frameworks
+### With Frameworks
 
 * Download the SDK from [http://aws.amazon.com/mobile/sdk](http://aws.amazon.com/mobile/sdk). Amazon API Gateway is supported with the version 2.2.1 and later.
 * With your project open in Xcode, <kbd>Control</kbd>+click **Frameworks** and then click **Add files to "\<project name\>"...**.
