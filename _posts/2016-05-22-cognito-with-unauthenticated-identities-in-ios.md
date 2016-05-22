@@ -46,7 +46,7 @@ The generated SDK depends on the AWS Mobile SDK for iOS. There are two ways to i
 
 You should use one of these two ways to import the AWS Mobile SDK but not both. Importing both ways loads two copies of the SDK into the project and causes compiler errors.
 
-##### With CocoaPods
+#### With CocoaPods
 
 * The AWS Mobile SDK for iOS is available through [CocoaPods](https://cocoapods.org/). If you have not installed CocoaPods, install it by running the command:
 
@@ -63,7 +63,7 @@ You should use one of these two ways to import the AWS Mobile SDK but not both. 
 * Open up `*.xcworkspace` with Xcode.
 * Add all files (`*.h` and `*.m` files) under the `generated-src` directory to your Xcode project.
 
-##### With Frameworks
+#### With Frameworks
 
 * Download the SDK from [http://aws.amazon.com/mobile/sdk](http://aws.amazon.com/mobile/sdk). Amazon API Gateway is supported with the version 2.2.1 and later.
 * With your project open in Xcode, <kbd>Control</kbd>+click **Frameworks** and then click **Add files to "\<project name\>"...**.
