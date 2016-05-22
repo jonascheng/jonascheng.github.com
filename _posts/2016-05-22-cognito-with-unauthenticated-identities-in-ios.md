@@ -12,7 +12,6 @@ tags:
 categories: aws
 twitter_text: "Cognito with Unauthenticated Identities in iOS"
 introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway in iOS"
-published: true
 ---
 
 # Preface 
