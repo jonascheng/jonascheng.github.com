@@ -12,7 +12,7 @@ tags:
 categories: aws
 twitter_text: "Cognito with Unauthenticated Identities in iOS"
 introduction: "Use Cognito Identity Pool to authorize unauthenticated clients to invoke API Gateway in iOS"
-published: false
+published: true
 ---
 
 # Preface 
@@ -41,7 +41,7 @@ In this sample code, I'd like to invoke **MOCK** API Gateway with Cognito SDK in
 
 ## Integrate an API Gateway-Generated iOS SDK into Your iOS Project
 
-The generated SDK depends on the AWS Mobile SDK for iOS. There are two ways to import it into your project:
+The generated SDK depends on the [AWS Mobile SDK for iOS](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/setup.html). There are two ways to import it into your project:
 
 * CocoaPods
 * Frameworks
@@ -74,23 +74,53 @@ You should use one of these two ways to import the AWS Mobile SDK but not both. 
 
 ## Use the SDK in your project
 
-First import the generated header file
+First import the AWSCore and the generated header files
 
-```
+```objc
+#import <AWSCore/AWSCore.h>
 #import "CLIMOCKClient.h"
 ```
 
-To use AWS IAM to authorize API calls you should set an
+To use AWS IAM to authorize API calls you should set an `AWSCognitoCredentialsProvider` object as the default provider for the SDK.
+
+> Replace [AWSRegionAPNortheast1] and [identity-pool-id] first
+
+```objc
+AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] 
+        initWithRegionType:AWSRegionAPNortheast1    // Replace with the region you deploy
+        identityPoolId:@"identity-pool-id"];
+AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc]
+        initWithRegion:AWSRegionAPNortheast1 
+        credentialsProvider:credentialsProvider];
+AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
+
+```
+
+Get the identity id for this provider. If an identity id is already set on this provider, no remote call is made and the identity will be returned as a result of the AWSTask (the identityId is also available as a property). If no identityId is set on this provider, one will be retrieved from the service.
+
+```objc
+// Retrieve your Amazon Cognito ID
+[[credentialsProvider getIdentityId] continueWithBlock:^id(AWSTask *task) {
+    if (task.error) {
+        NSLog(@"Error: %@", task.error);
+    }
+    else {
+        // the task result will contain the identity id
+        NSString *cognitoId = task.result;
+    }
+    return nil;
+}];
+```
 
 Then grab the `defaultClient` from your code
 
-```
+```objc
 CLIMOCKClient *client = [CLIMOCKClient defaultClient];
 ```
 
 You can now call your method using the client SDK
 
-```
+```objc
 [[client demoGet] continueWithBlock:^id(AWSTask *task) {
     if (task.error) {
         NSLog(@"Error: %@", task.error);
@@ -104,53 +134,12 @@ You can now call your method using the client SDK
 }];
 ```
 
-To use AWS IAM to authorize API calls you can set an `AWSCredentialsProvider` object as the default provider for the SDK.
-
-```
-AWSStaticCredentialsProvider *creds = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"" secretKey:@""];
-    
-AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:creds];
-    
-AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
-
-// you can also use Amazon Cognito to retrieve temporary credentials
-AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1
-        identityPoolId:CognitoPoolID];
-```
-
-
-### Invoke MOCK API Gateway with Cognito SDK in iOS
-
-* Login `AWS Management Console` and open `Amazon API Gateway`
-* Under `APIs\MOCK\Stages`, click on `dev`
-* Select tab `SDK Generation`
-* Set `Platform` as `Javascript`
-* Click `Generate SDK` and download an archived file
-* Decompress the download file to a folder, say `~\foo` 
-* Download [aws-sdk](https://github.com/aws/aws-sdk-js/releases) from Github
-* Decompress the download file to the previous folder
-* Create a static index.html with the following content in the previous folder
-
-
-* Create a static script.js with the following content in the previous folder
-
-    Replace [region] and [identity-pool-id] first 
-
-> You ONLY need to invoke `AWS.CognitoIdentity.getId()` first time or as you receive `ResourceNotFoundException: Identity 'identity-id' not found.`
-> 
-
-* Open index.html in browser, and you should be able to invoke the API successfully and read a prompt message `Hello foo!`
-
-> To use an API key with the API Gateway-generated SDK, you can pass the API key as a parameter to the Factory object by using code similar to the following. If you use an API key, it is specified as part of the x-api-key header and all requests to the API will be signed.
+> To use an API key with the API Gateway-generated SDK, you can set the `apiKey` property of the generated SDK to send API Keys in your requests.  If you use an API key, it is specified as part of the x-api-key header and all requests to the API will be signed.
 >
-> var apigClient = apigClientFactory.newClient({
-  apiKey: 'API_KEY'
-});
-
+> client.APIKey = @"api-key";
 
 # References
 
-* [AWS Serverless Multi-Tier Architectures](https://d0.awsstatic.com/whitepapers/AWS_Serverless_Multi-Tier_Architectures.pdf)
-* [Enable CORS for a Resource through a Method in API Gateway](http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html)
-* [Identify Pool](http://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html)
-* [Generate an SDK for an API in API Gateway](http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-generate-sdk.html)
+* [Set Up the SDK for iOS](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/setup.html)
+* [Getting Credentials](http://docs.aws.amazon.com/cognito/latest/developerguide/getting-credentials.html)
+* [AWS Mobile SDK for iOS v2.4.2 Reference](http://docs.aws.amazon.com/AWSiOSSDK/latest/index.html)

@@ -93,7 +93,8 @@ In this sample code, I'd like to create an **MOCK** service which would only res
 * Open `IAM` and click on `Roles`
 * Select `Cognito_MOCKUnauth_Role` which is created automatically as you created identity pool in previous step
 * Click `Edit Policy` and paste with the following content
-* Replace [region], [account-id] and [api-id] first
+
+> Replace [region], [account-id] and [api-id] first
 
 ```json
 {
@@ -150,7 +151,7 @@ In this sample code, I'd like to create an **MOCK** service which would only res
 
 * Create a static script.js with the following content in the previous folder
 
-    Replace [region] and [identity-pool-id] first 
+> Replace [region] and [identity-pool-id] first 
     
 ```javascript
 function foo() {
@@ -213,7 +214,7 @@ foo();
 > To use an API key with the API Gateway-generated SDK, you can pass the API key as a parameter to the Factory object by using code similar to the following. If you use an API key, it is specified as part of the x-api-key header and all requests to the API will be signed.
 >
 > var apigClient = apigClientFactory.newClient({
-  apiKey: 'API_KEY'
+  apiKey: 'api-key'
 });
 
 
