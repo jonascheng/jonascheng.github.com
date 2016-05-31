@@ -73,7 +73,7 @@ console.log('end...');
 
 ```
 
-Whenever you run above script you're going get an [1,1] list instead.
+Whenever you run above script you're going to get an [1,1] list instead.
 
 ```
 start async...
@@ -121,7 +121,7 @@ promise
 });
 ```
 
-We see that the promise allowed us to simplify our asynchronous code by limiting the callback to only the report of the value, and all the processing logic of that value is separated to another block (the then block) outside the callback in a way that appears to be synchronous. Go back to our initial challenge, hence our solution would be like code below.
+We see that the promise allowed us to simplify our asynchronous code by limiting the callback to only the report of the value, and all the processing logic of that value is separated to another block (the then block) outside the callback in a way that appears to be synchronous. Going back to our initial challenge, our solution would be like code below.
 
 ```javascript
 function genFibonacciAsync(list, ceiling) {
