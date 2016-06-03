@@ -133,10 +133,7 @@ function genFibonacciAsync(list, ceiling) {
         resolve();
       else {
         list.push(next);
-        genFibonacciAsync(list, ceiling)
-          .then(function() {
-            resolve();
-          });
+        resolve(genFibonacciAsync(list, ceiling));
       }
     }, 1);
   });
